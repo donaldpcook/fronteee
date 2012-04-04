@@ -11,7 +11,7 @@ My front-end boilerplate. This is the bare minimum that I use on every single fr
 -----
 ## JS
 
-## json2.js
+### json2.js
 - JSON for everyone!
 
 ### jQuery 1.7.2
