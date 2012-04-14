@@ -21,3 +21,9 @@ My front-end boilerplate. This is the bare minimum that I use on every single fr
 
 ### backbone.js
 - Structure! http://documentcloud.github.com/backbone/
+
+### jasmine.js
+- Includes testing with jasmine. Add specs to spec/javascripts/
+- ruby environment required to run tests this way
+- to run with CI, use rake jasmine:ci
+- more info at http://pivotal.github.com/jasmine/
