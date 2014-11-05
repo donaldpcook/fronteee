@@ -1,0 +1,28 @@
+{
+  "name": "fronteee",
+  "version": "0.0.0",
+  "description": "Front-end boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/donaldpcook/fronteee.git"
+  },
+  "author": "Donald Cook",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/donaldpcook/fronteee/issues"
+  },
+  "homepage": "https://github.com/donaldpcook/fronteee",
+  "devDependencies": {
+    "gulp": "~3.8.10",
+    "connect": "~3.3.2",
+    "serve-static": "~1.7.1",
+    "tiny-lr": "~0.1.4",
+    "connect-livereload": "~0.5.0",
+    "path": "~0.4.9",
+    "gulp-ruby-sass": "git://github.com/sindresorhus/gulp-ruby-sass.git"
+  }
+}
