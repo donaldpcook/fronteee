@@ -26,6 +26,7 @@
     "gulp-ruby-sass": "git://github.com/sindresorhus/gulp-ruby-sass.git",
     "browserify": "~6.2.0",
     "gulp-notify": "~2.0.1",
-    "vinyl-source-stream": "~1.0.0"
+    "vinyl-source-stream": "~1.0.0",
+    "gulp-autoprefixer": "~1.0.1"
   }
 }

@@ -9,7 +9,8 @@ var gulp = require('gulp'),
     tinylr = require('tiny-lr'),
     browserify = require('browserify'),
     source = require('vinyl-source-stream'),
-    sass = require('gulp-ruby-sass');
+    sass = require('gulp-ruby-sass'),
+    prefix = require('gulp-autoprefixer');
 
 // standard LiveReload port
 var port = 35729;
@@ -21,8 +22,8 @@ gulp.task('move', function() {
 
 gulp.task('sass', function() {
   gulp.src('app/scss/app.scss')
-    // TODO: get sourcemaps working
-    .pipe(sass({sourcemap: 'none', sourcemapPath: '/scss/'}))
+    .pipe(sass({sourcemap: 'inline', style: 'compact'}))
+    .pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
     .on('error', handleErrors)
     .pipe(gulp.dest('dest/css'));
 });
@@ -35,8 +36,7 @@ gulp.task('browserify', function() {
   .bundle()
   .on('error', handleErrors)
   .pipe(source('app.js'))
-  .pipe(gulp.dest('./dest/js/'))
-  .pipe(connect.reload());
+  .pipe(gulp.dest('./dest/js/'));
 });
 
 gulp.task('lr', function() {
@@ -50,15 +50,20 @@ gulp.task('serve', function() {
     .listen(3000);
 });
 
-gulp.task('default', ['move', 'sass', 'lr', 'serve'], function() {
+gulp.task('default', ['move', 'sass', 'browserify', 'lr', 'serve'], function() {
   gulp.watch('app/index.html', ['move']);
   gulp.watch('app/scss/**', ['sass']);
+  gulp.watch('app/js/**/*.js', ['browserify']);
 
   gulp.watch('dest/**/*.html', function(event) {
     tinylr.changed(path.relative(__dirname, event.path));
   });
 
   gulp.watch('dest/**/*.css', function(event) {
+    tinylr.changed(path.relative(__dirname, event.path));
+  });
+
+  gulp.watch('dest/**/*.js', function(event) {
     tinylr.changed(path.relative(__dirname, event.path));
   });
 });
