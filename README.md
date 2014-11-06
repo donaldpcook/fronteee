@@ -3,27 +3,20 @@
 My front-end boilerplate. This is the bare minimum that I use on every single front-end project.
 
 -----
-## CSS
+## Dependencies
 
-### base.css
-- based off of HTML5 Boilerplate's base CSS
+Node.js with npm is required. So is Ruby and Sass (> 3.4.0 for
+sourcemaps)
 
 -----
-## JS
+## Install
 
-### json2.js
-- JSON for everyone!
+Install all dependencies with npm using `npm install`.
 
-### jQuery 1.7.2
+We use Gulp to build the application. Just type in `gulp` to spin up
+a server. This compiles your Sass, builds your JS assets with browserify
+and starts up a LiveReload server so any changes on your html, Sass or
+JS will automatically be reflected in your browser.
 
-### underscore.js
-- Awesome library of utilities http://documentcloud.github.com/underscore/
-
-### backbone.js
-- Structure! http://documentcloud.github.com/backbone/
-
-### jasmine.js
-- Includes testing with jasmine. Add specs to spec/javascripts/
-- ruby environment required to run tests this way
-- to run with CI, use rake jasmine:ci
-- more info at http://pivotal.github.com/jasmine/
+With gulp running, you should be able to see your site at
+`http://localhost:3000`.
