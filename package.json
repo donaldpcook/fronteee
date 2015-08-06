@@ -23,7 +23,6 @@
     "gulp-autoprefixer": "~1.0.1",
     "gulp-notify": "~2.0.1",
     "gulp-ruby-sass": "~0.7.1",
-    "serve-static": "~1.7.1",
     "vinyl-source-stream": "~1.0.0"
   }
 }
