@@ -17,15 +17,13 @@
   },
   "homepage": "https://github.com/donaldpcook/fronteee",
   "devDependencies": {
-    "gulp": "~3.8.10",
-    "connect": "~3.3.2",
-    "serve-static": "~1.7.1",
-    "tiny-lr": "~0.1.4",
-    "connect-livereload": "~0.5.0",
-    "gulp-ruby-sass": "~0.7.1",
+    "browser-sync": "^2.8.2",
     "browserify": "~6.2.0",
+    "gulp": "~3.8.10",
+    "gulp-autoprefixer": "~1.0.1",
     "gulp-notify": "~2.0.1",
-    "vinyl-source-stream": "~1.0.0",
-    "gulp-autoprefixer": "~1.0.1"
+    "gulp-ruby-sass": "~0.7.1",
+    "serve-static": "~1.7.1",
+    "vinyl-source-stream": "~1.0.0"
   }
 }

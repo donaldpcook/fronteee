@@ -2,30 +2,28 @@
 
 var gulp = require('gulp'),
     notify = require('gulp-notify'),
+    browserSync = require('browser-sync'),
     connect = require('connect'),
     serveStatic = require('serve-static'),
     path = require('path'),
-    connectLivereload = require('connect-livereload'),
-    tinylr = require('tiny-lr'),
     browserify = require('browserify'),
     source = require('vinyl-source-stream'),
     sass = require('gulp-ruby-sass'),
     prefix = require('gulp-autoprefixer');
 
-// standard LiveReload port
-var port = 35729;
-
 gulp.task('move', function() {
   gulp.src('./app/index.html')
-    .pipe(gulp.dest('dest'));
+    .pipe(gulp.dest('dest'))
+    .pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('sass', function() {
   gulp.src('app/scss/app.scss')
-    .pipe(sass({sourcemap: 'inline', style: 'compact'}))
+    .pipe(sass())
     .pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
     .on('error', handleErrors)
-    .pipe(gulp.dest('dest/css'));
+    .pipe(gulp.dest('dest/css'))
+    .pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('browserify', function() {
@@ -36,11 +34,8 @@ gulp.task('browserify', function() {
   .bundle()
   .on('error', handleErrors)
   .pipe(source('app.js'))
-  .pipe(gulp.dest('./dest/js/'));
-});
-
-gulp.task('lr', function() {
-  tinylr().listen(port);
+  .pipe(gulp.dest('./dest/js/'))
+  .pipe(browserSync.reload({stream: true, once: true}));
 });
 
 gulp.task('serve', function() {
@@ -50,22 +45,18 @@ gulp.task('serve', function() {
     .listen(3000);
 });
 
-gulp.task('default', ['move', 'sass', 'browserify', 'lr', 'serve'], function() {
+gulp.task('browser-sync', function() {
+    browserSync.init(null, {
+        server: {
+            baseDir: "dest"
+        }
+    });
+});
+
+gulp.task('default', ['move', 'sass', 'browserify', 'browser-sync'], function() {
   gulp.watch('app/index.html', ['move']);
   gulp.watch('app/scss/**', ['sass']);
   gulp.watch('app/js/**/*.js', ['browserify']);
-
-  gulp.watch('dest/**/*.html', function(event) {
-    tinylr.changed(path.relative(__dirname, event.path));
-  });
-
-  gulp.watch('dest/**/*.css', function(event) {
-    tinylr.changed(path.relative(__dirname, event.path));
-  });
-
-  gulp.watch('dest/**/*.js', function(event) {
-    tinylr.changed(path.relative(__dirname, event.path));
-  });
 });
 
 function handleErrors() {
