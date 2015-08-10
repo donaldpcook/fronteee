@@ -20,7 +20,7 @@ gulp.task('sass', function() {
     .pipe(prefix('last 1 version', '> 1%', 'ie 8', 'ie 7'))
     .on('error', handleErrors)
     .pipe(gulp.dest('dest/css'))
-    .pipe(browserSync.reload({stream: true}));
+    .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
 gulp.task('browserify', function() {
